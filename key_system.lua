@@ -89,7 +89,6 @@ end
 			verified.Value = true
 				wait(5)
 			KeySystem:Destroy()
-				-- Main System
 -- loadstring
 		else
 			print("Invalid Key!")
@@ -97,4 +96,4 @@ end
 	end)
 end
 
-coroutine.wrap(JJKNKP_fake_script)()
+coroutine.wrap(JJKNKP_fake_script)() 

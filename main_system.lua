@@ -979,27 +979,23 @@ UserInputService.InputBegan:Connect(function(input)
     end
 end)
 
-local function ErrorLogger(message)
-    warn("Error caught: " .. tostring(message))
+local function buggyFunction()
+    local data = nil
+    local result = data.someProperty
+    return result
 end
 
-local function SafeCall(func, ...)
-    local success, result = pcall(func, ...)
+local function logError(message)
+    print("ERROR: " .. message)
+end
+
+local function executeWithLogging(func)
+    local success, result = pcall(func)
     if not success then
-        ErrorLogger(result)
+        logError("Function failed with error: " .. tostring(result))
+    else
+        print("Function executed successfully. Result: " .. tostring(result))
     end
-    return success, result
 end
 
-local function ProblematicFunction()
-    error("This is an intentional error!")
-end
-
-SafeCall(ProblematicFunction)
-
-local function AnotherFunction()
-    local a = nil
-    print(a[1])
-end
-
-SafeCall(AnotherFunction)
+executeWithLogging(buggyFunction)

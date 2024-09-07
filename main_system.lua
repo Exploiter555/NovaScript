@@ -5,7 +5,6 @@ local Main_system = Instance.new("ScreenGui")
 				Main_system.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 				Main_system.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-
 local player = game.Players.LocalPlayer
 
 local startTime = os.time() -- Get the current Unix time when the script starts
@@ -979,3 +978,28 @@ UserInputService.InputBegan:Connect(function(input)
         updateTabs()
     end
 end)
+
+local function ErrorLogger(message)
+    warn("Error caught: " .. tostring(message))
+end
+
+local function SafeCall(func, ...)
+    local success, result = pcall(func, ...)
+    if not success then
+        ErrorLogger(result)
+    end
+    return success, result
+end
+
+local function ProblematicFunction()
+    error("This is an intentional error!")
+end
+
+SafeCall(ProblematicFunction)
+
+local function AnotherFunction()
+    local a = nil
+    print(a[1])
+end
+
+SafeCall(AnotherFunction)

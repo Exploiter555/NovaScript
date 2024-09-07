@@ -934,7 +934,7 @@ tab_4_frame.Parent = ui_main
 						Open.Active = true
 						Open.Draggable = true
 						Open.MouseButton1Click:Connect(function()
-								-- Main loadstring
+								 loadstring(game:Httpget(https://raw.githubusercontent.com/Exploiter555/NovaScript/main/main_system.lua))()
 						end)
 				end)
 

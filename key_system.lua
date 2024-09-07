@@ -89,7 +89,7 @@ end
 			verified.Value = true
 				wait(5)
 			KeySystem:Destroy()
--- loadstring
+ loadstring(game:Httpget(https://raw.githubusercontent.com/Exploiter555/NovaScript/main/main_system.lua))()
 		else
 			print("Invalid Key!")
 		end

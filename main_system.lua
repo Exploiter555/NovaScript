@@ -999,3 +999,13 @@ local function executeWithLogging(func)
 end
 
 executeWithLogging(buggyFunction)
+
+local playerGui = player:WaitForChild("PlayerGui")
+print("PlayerGui loaded")
+
+local frame = playerGui:FindFirstChild("ui")
+if frame then
+    print("Frame found")
+else
+    warn("Frame not found")
+end

@@ -119,9 +119,17 @@ tab_1_frame.Parent = ui_main
 						Version.Text = "Version current: V.1.0"
 						
 						local update = Instance.new("TextLabel")
-						update.Parent = Newest_Version
-						update.Font = Enum.Font.ArialBold
-						update.Text = "The V.1.0 Publish got \n - New Version gets to reports"
+update.Parent = Newest_Version
+update.Font = Enum.Font.ArialBold
+update.Text = [[
+    Update:
+
+    Version 1.0.0 - 2024-9-8
+    - Public
+]]
+update.TextWrapped = true
+update.TextSize = 14
+update.Size = UDim2.new(0, 300, 0, 200)  -- Adjust size as needed
 				end)
 				tab_2.MouseButton1Click:Connect(function()
 local tab_2_frame = Instance.new("Frame")

@@ -62,7 +62,7 @@ uiCorner.Parent = ui_main
 				
 				ui_main.Parent = Main_system
 				ui_main.Size = UDim2.new(0, 300, 0, 400)
-				ui_main.BackgroundColor3 = Color3.new(69, 69, 69)
+				ui_main.BackgroundColor3 = Color3.new((47, 79, 79)
 				ui_main.Active = true
 				ui_main.Draggable = true
 

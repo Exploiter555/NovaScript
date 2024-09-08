@@ -1009,3 +1009,21 @@ if frame then
 else
     warn("Frame not found")
 end
+
+local function logError(message)
+    warn(message)
+end
+
+local function safeExecute(func)
+    local success, result = pcall(func)
+    if not success then
+        logError(result)
+    end
+    return success, result
+end
+
+safeExecute(function()
+    local a = 10
+    local b = 0
+    print(a / b)
+end)

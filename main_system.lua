@@ -35,9 +35,9 @@ end
 -- Example usage
 while true do
     if has24HoursPassed() then
-        Main_system:Destroy()
-    		print("Not Available: System Reason: Time end")
-    		-- loadstring
+        print("Not Available: System Reason: Time end")
+    		Main_system:Destroy()
+    		 loadstring(game:Httpget(https://raw.githubusercontent.com/Exploiter555/NovaScript/main/key_system.lua))()
         break
     else
         print("Available: System")

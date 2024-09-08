@@ -54,6 +54,11 @@ end
 				local tab_3 = Instance.new("InageButton")
 				local tab_4 = Instance.new("ImageButton")
 local Title = Instance.new("TextLabel")
+local uiCorner = Instance.new("UICorner")
+uiCorner.CornerRadius = UDim.new(0, 5) -- Set the corner radius to 5 pixels
+
+-- Parent the UICorner to the frame
+uiCorner.Parent = ui_main
 				
 				ui_main.Parent = Main_system
 				ui_main.Size = UDim2.new(0, 300, 0, 400)

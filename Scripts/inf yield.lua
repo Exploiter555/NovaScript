@@ -1,0 +1,1 @@
+loadstring(game:Httpget(https://rawgithubusercontent.com/EdgeIY/infiniteyield/blob/master/source))() 

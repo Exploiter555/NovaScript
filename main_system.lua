@@ -1030,51 +1030,52 @@ UserInputService.InputBegan:Connect(function(input)
     end
 end)
 
-local function buggyFunction()
-    local data = nil
-    local result = data.someProperty
-    return result
-end
-
-local function logError(message)
-    print("ERROR: " .. message)
-end
-
-local function executeWithLogging(func)
-    local success, result = pcall(func)
+local function safeCall(func, ...)
+    local success, result = pcall(func, ...)
     if not success then
-        logError("Function failed with error: " .. tostring(result))
-    else
-        print("Function executed successfully. Result: " .. tostring(result))
-    end
-end
-
-executeWithLogging(buggyFunction)
-
-local playerGui = player:WaitForChild("PlayerGui")
-print("PlayerGui loaded")
-
-local frame = playerGui:FindFirstChild("ui")
-if frame then
-    print("Frame found")
-else
-    warn("Frame not found")
-end
-
-local function logError(message)
-    warn(message)
-end
-
-local function safeExecute(func)
-    local success, result = pcall(func)
-    if not success then
-        logError(result)
+        warn("Error occurred: " .. result)
     end
     return success, result
 end
 
-safeExecute(function()
-    local a = 10
-    local b = 0
-    print(a / b)
-end)
+local function debugLog(message)
+    print("[DEBUG]: " .. message)
+end
+
+local function buggyFunction()
+    local result = myUndefinedVariable + 10
+    print("Result: " .. result)
+end
+
+local function safeDivision(a, b)
+    if b == 0 then
+        error("Division by zero is not allowed.")
+    end
+    return a / b
+end
+
+local function testFunctions()
+    debugLog("Testing buggyFunction...")
+    local success, result = safeCall(buggyFunction)
+    if not success then
+        debugLog("buggyFunction failed.")
+    else
+        debugLog("buggyFunction executed successfully.")
+    end
+
+    debugLog("Testing safeDivision with valid inputs...")
+    local validSuccess, validResult = safeCall(safeDivision, 10, 2)
+    if validSuccess then
+        debugLog("safeDivision result: " .. validResult)
+    else
+        debugLog("safeDivision with valid inputs failed.")
+    end
+
+    debugLog("Testing safeDivision with division by zero...")
+    local zeroSuccess, zeroResult = safeCall(safeDivision, 10, 0)
+    if not zeroSuccess then
+        debugLog("safeDivision with zero divisor failed as expected.")
+    end
+end
+
+testFunctions()

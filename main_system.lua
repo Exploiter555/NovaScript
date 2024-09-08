@@ -6,6 +6,22 @@ local Main_system = Instance.new("ScreenGui")
 				Main_system.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+local mouseImage = Instance.new("ImageLabel")
+mouseImage.Parent = screenGui
+mouseImage.Size = UDim2.new(0, 32, 0, 32)
+mouseImage.BackgroundTransparency = 1
+mouseImage.Image = "rbxassetid://<Your_Image_ID>"
+
+mouse.Icon = ""
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    mouseImage.Position = UDim2.new(0, mouse.X - 16, 0, mouse.Y - 16)
+end)
 
 local startTime = os.time() -- Get the current Unix time when the script starts
 

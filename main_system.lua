@@ -32,19 +32,41 @@ local function has24HoursPassed()
     return timeElapsed >= 24 * 60 * 60 -- Check if 24 hours (in seconds) have passed
 end
 
--- Example usage
-while true do
-    if has24HoursPassed() then
-        print("Not Available: System Reason: Time end")
-    		Main_system:Destroy()
-    		 loadstring(game:Httpget(https://raw.githubusercontent.com/Exploiter555/NovaScript/main/key_system.lua))()
-        break
-    else
-        print("Available: System")
-    end
-		wait(1)
+-- Function to format the time into hours, minutes, and seconds
+local function formatTime(seconds)
+    local hours = math.floor(seconds / 3600)
+    local minutes = math.floor((seconds % 3600) / 60)
+    local secs = seconds % 60
+    return string.format("%02d:%02d:%02d", hours, minutes, secs)
 end
 
+-- Create the GUI elements
+local TimeLabel = Instance.new("TextLabel")
+
+TimeLabel.Parent = ui_main
+TimeLabel.Size = UDim2.new(0, 200, 0, 50)
+TimeLabel.Position = UDim2.new(0.5, -100, 0, 50)
+TimeLabel.BackgroundColor3 = Color3.new(0, 0, 0)
+TimeLabel.TextColor3 = Color3.new(1, 1, 1)
+TimeLabel.TextScaled = true
+
+-- Example usage
+while true do
+    local currentTime = os.time()
+    local timeElapsed = currentTime - startTime
+    
+    if has24HoursPassed() then
+        TimeLabel.Text = "Not Available: System Reason: Time end"
+        game:GetService("Debris"):AddItem(ScreenGui, 5) -- Remove the GUI after 5 seconds
+        Main_system:Destroy()
+        loadstring(game:Httpget("https://raw.githubusercontent.com/Exploiter555/NovaScript/main/key_system.lua"))()
+        break
+    else
+        TimeLabel.Text = "Available: Time Elapsed - " .. formatTime(timeElapsed)
+    end
+    
+    wait(1)
+end
 				-- ui setup and tabs system
 				local ui_main = Instance.new("Frame")
 				local close = Instance.new("TextButton")

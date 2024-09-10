@@ -7,7 +7,10 @@ local Main_system = Instance.new("ScreenGui")
 
 local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
-
+local tab_1 = Instance.new("TextButton")
+local tab_2 = Instance.new("TextButton")
+local tab_3 = Instance.new("TextButton")
+local tab_4 = Instance.new("TextButton")
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = player:WaitForChild("PlayerGui")
 
